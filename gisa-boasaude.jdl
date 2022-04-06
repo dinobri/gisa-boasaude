@@ -1,0 +1,151 @@
+// Entidades principais
+
+entity Associado {
+	nome String
+  	sobrenome String
+  	dataNascimento Instant
+    estadoCivil EstadoCivil
+    sexo Sexo
+    naturalidadeUf UF
+  	naturalidadeCidade String
+  	numeroDocumento String
+  	ufDocumento UF
+  	orgaoDocumento String
+  	dataDocumento Instant
+  	nomeMae String
+  	nomePai String
+  	email String
+  	telefone String
+    sitaucao SituacaoAssociado
+}
+
+entity Prestador {
+	nome String
+    sobrenome String
+    dataNascimento Instant
+    sexo Sexo
+    numeroRegistroProfissional String
+    telefone String
+}
+
+entity Conveniado {
+	nome String
+    telefone String
+}
+
+entity Plano {
+	nome String
+    codigoANS String
+    categoria CategoriaPlano
+    tipo TipoPlano
+    odonto Boolean
+    idadeMin Integer
+    idadeMax Integer
+    quantidadeConsultasAno Integer
+    quanatidadeExamesAno Integer
+    valorMensalidade Double
+}
+
+entity Consulta{
+  	situacao SituacaoAtendimento
+}
+
+entity DisponibilidadeConsulta {
+	horaInicio Instant
+    horaFim Instant
+}
+
+entity Exame{
+  	situacao SituacaoAtendimento
+}
+
+entity DisponibilidadeExame {
+	horaInicio Instant
+    horaFim Instant
+}
+
+entity TipoExame {
+	nome String
+}
+
+// Entidades suporte
+entity Endereco{
+    cep String
+    logradouro String
+    numero String
+    cidade String
+    uf UF
+    bairro String
+    complemento String
+}
+
+entity Especialidade{
+  nome String
+}
+
+// Enums
+
+enum EstadoCivil {
+  	SOLTEIRO, CASADO, DIVORCIADO, VIUVO, UNIAO_ESTAVEL
+}
+
+enum Sexo{
+	MASCULINO, FEMININO
+}
+
+enum SituacaoAssociado{
+	ATIVO, SUSPENSO, INATIVO
+}
+
+enum UF{
+  AC, AL, AP, AM, BA, CE, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO, DF
+}
+
+enum CategoriaPlano{
+	INDIVIDUAL, EMPRESARIAL
+}
+
+enum TipoPlano{
+	ENFERMARIA, APARTAMENTO, VIP
+}
+
+enum SituacaoAtendimento{
+	AGENDADO, CANCELADO, EM_ANDAMENTO, FINALIZADO
+}
+
+// Relacionamentos
+
+relationship OneToOne {
+	Associado{endereco} to Endereco
+	Prestador{enderecoAtendimento} to Endereco
+	Conveniado{endereco} to Endereco
+    Consulta{disponibilidadeConsulta} to DisponibilidadeConsulta
+    Exame{disponibilidadeExame} to DisponibilidadeExame
+}
+
+relationship ManyToOne {
+	Associado{plano} to Plano
+    Consulta{associado} to Associado
+    Exame{associado} to Associado
+    DisponibilidadeConsulta{prestador} to Prestador
+    DisponibilidadeExame{prestador} to Prestador
+    DisponibilidadeExame{tipoExame} to TipoExame
+    Prestador{especialidade} to Especialidade
+}
+
+relationship ManyToMany {
+	Conveniado to TipoExame
+}
+
+// Set pagination options
+paginate JobHistory, Employee with infinite-scroll
+paginate Job with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

@@ -1,0 +1,8 @@
+{
+  "generator-jhipster:7.8.0": {
+    "promptValues": {
+      "packageName": "br.com.boasaude.gisa",
+      "nativeLanguage": "pt-br"
+    }
+  }
+}
