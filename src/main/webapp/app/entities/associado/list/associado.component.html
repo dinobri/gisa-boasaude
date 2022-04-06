@@ -1,0 +1,120 @@
+<div>
+  <h2 id="page-heading" data-cy="AssociadoHeading">
+    <span>Associados</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-associado"
+        [routerLink]="['/associado/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Associado </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="associados?.length === 0">
+    <span>No associados found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="associados && associados.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Nome</span></th>
+          <th scope="col"><span>Sobrenome</span></th>
+          <th scope="col"><span>Data Nascimento</span></th>
+          <th scope="col"><span>Estado Civil</span></th>
+          <th scope="col"><span>Sexo</span></th>
+          <th scope="col"><span>Naturalidade Uf</span></th>
+          <th scope="col"><span>Naturalidade Cidade</span></th>
+          <th scope="col"><span>Numero Documento</span></th>
+          <th scope="col"><span>Uf Documento</span></th>
+          <th scope="col"><span>Orgao Documento</span></th>
+          <th scope="col"><span>Data Documento</span></th>
+          <th scope="col"><span>Nome Mae</span></th>
+          <th scope="col"><span>Nome Pai</span></th>
+          <th scope="col"><span>Email</span></th>
+          <th scope="col"><span>Telefone</span></th>
+          <th scope="col"><span>Sitaucao</span></th>
+          <th scope="col"><span>Endereco</span></th>
+          <th scope="col"><span>Plano</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let associado of associados; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/associado', associado.id, 'view']">{{ associado.id }}</a>
+          </td>
+          <td>{{ associado.nome }}</td>
+          <td>{{ associado.sobrenome }}</td>
+          <td>{{ associado.dataNascimento | formatMediumDatetime }}</td>
+          <td>{{ associado.estadoCivil }}</td>
+          <td>{{ associado.sexo }}</td>
+          <td>{{ associado.naturalidadeUf }}</td>
+          <td>{{ associado.naturalidadeCidade }}</td>
+          <td>{{ associado.numeroDocumento }}</td>
+          <td>{{ associado.ufDocumento }}</td>
+          <td>{{ associado.orgaoDocumento }}</td>
+          <td>{{ associado.dataDocumento | formatMediumDatetime }}</td>
+          <td>{{ associado.nomeMae }}</td>
+          <td>{{ associado.nomePai }}</td>
+          <td>{{ associado.email }}</td>
+          <td>{{ associado.telefone }}</td>
+          <td>{{ associado.sitaucao }}</td>
+          <td>
+            <div *ngIf="associado.endereco">
+              <a [routerLink]="['/endereco', associado.endereco?.id, 'view']">{{ associado.endereco?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="associado.plano">
+              <a [routerLink]="['/plano', associado.plano?.id, 'view']">{{ associado.plano?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/associado', associado.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/associado', associado.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(associado)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

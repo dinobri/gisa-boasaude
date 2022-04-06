@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20220406014700",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "conveniado",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Conveniado",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "endereco",
+      "otherEntityRelationshipName": "conveniado",
+      "ownerSide": true,
+      "relationshipName": "endereco",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "tipoExame",
+      "otherEntityRelationshipName": "conveniado",
+      "ownerSide": true,
+      "relationshipName": "tipoExame",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,31 @@
+{
+  "applications": "*",
+  "changelogDate": "20220406014703",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "disponibilidade_consulta",
+  "fields": [
+    {
+      "fieldName": "horaInicio",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "horaFim",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DisponibilidadeConsulta",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "prestador",
+      "otherEntityRelationshipName": "disponibilidadeConsulta",
+      "relationshipName": "prestador",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

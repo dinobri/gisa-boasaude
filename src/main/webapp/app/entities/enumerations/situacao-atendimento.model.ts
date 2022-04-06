@@ -1,0 +1,9 @@
+export enum SituacaoAtendimento {
+  AGENDADO = 'AGENDADO',
+
+  CANCELADO = 'CANCELADO',
+
+  EM_ANDAMENTO = 'EM_ANDAMENTO',
+
+  FINALIZADO = 'FINALIZADO',
+}

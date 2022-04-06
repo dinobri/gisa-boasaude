@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Conveniado.
+    -->
+    <changeSet id="20220406014700-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="endereco_id"
+                                 baseTableName="conveniado"
+                                 constraintName="fk_conveniado__endereco_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="endereco"/>
+
+        <addForeignKeyConstraint baseColumnNames="conveniado_id"
+                                 baseTableName="rel_conveniado__tipo_exame"
+                                 constraintName="fk_rel_conveniado__tipo_exame__conveniado_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="conveniado"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_exame_id"
+                                 baseTableName="rel_conveniado__tipo_exame"
+                                 constraintName="fk_rel_conveniado__tipo_exame__tipo_exame_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_exame"/>
+    </changeSet>
+</databaseChangeLog>

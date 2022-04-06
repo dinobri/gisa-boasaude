@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="associado">
+      <h2 data-cy="associadoDetailsHeading"><span>Associado</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ associado.id }}</span>
+        </dd>
+        <dt><span>Nome</span></dt>
+        <dd>
+          <span>{{ associado.nome }}</span>
+        </dd>
+        <dt><span>Sobrenome</span></dt>
+        <dd>
+          <span>{{ associado.sobrenome }}</span>
+        </dd>
+        <dt><span>Data Nascimento</span></dt>
+        <dd>
+          <span>{{ associado.dataNascimento | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Estado Civil</span></dt>
+        <dd>
+          <span>{{ associado.estadoCivil }}</span>
+        </dd>
+        <dt><span>Sexo</span></dt>
+        <dd>
+          <span>{{ associado.sexo }}</span>
+        </dd>
+        <dt><span>Naturalidade Uf</span></dt>
+        <dd>
+          <span>{{ associado.naturalidadeUf }}</span>
+        </dd>
+        <dt><span>Naturalidade Cidade</span></dt>
+        <dd>
+          <span>{{ associado.naturalidadeCidade }}</span>
+        </dd>
+        <dt><span>Numero Documento</span></dt>
+        <dd>
+          <span>{{ associado.numeroDocumento }}</span>
+        </dd>
+        <dt><span>Uf Documento</span></dt>
+        <dd>
+          <span>{{ associado.ufDocumento }}</span>
+        </dd>
+        <dt><span>Orgao Documento</span></dt>
+        <dd>
+          <span>{{ associado.orgaoDocumento }}</span>
+        </dd>
+        <dt><span>Data Documento</span></dt>
+        <dd>
+          <span>{{ associado.dataDocumento | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Nome Mae</span></dt>
+        <dd>
+          <span>{{ associado.nomeMae }}</span>
+        </dd>
+        <dt><span>Nome Pai</span></dt>
+        <dd>
+          <span>{{ associado.nomePai }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ associado.email }}</span>
+        </dd>
+        <dt><span>Telefone</span></dt>
+        <dd>
+          <span>{{ associado.telefone }}</span>
+        </dd>
+        <dt><span>Sitaucao</span></dt>
+        <dd>
+          <span>{{ associado.sitaucao }}</span>
+        </dd>
+        <dt><span>Endereco</span></dt>
+        <dd>
+          <div *ngIf="associado.endereco">
+            <a [routerLink]="['/endereco', associado.endereco?.id, 'view']">{{ associado.endereco?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Plano</span></dt>
+        <dd>
+          <div *ngIf="associado.plano">
+            <a [routerLink]="['/plano', associado.plano?.id, 'view']">{{ associado.plano?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/associado', associado.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

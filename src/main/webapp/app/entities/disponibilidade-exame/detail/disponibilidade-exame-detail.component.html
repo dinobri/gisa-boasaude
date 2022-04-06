@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="disponibilidadeExame">
+      <h2 data-cy="disponibilidadeExameDetailsHeading"><span>Disponibilidade Exame</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ disponibilidadeExame.id }}</span>
+        </dd>
+        <dt><span>Hora Inicio</span></dt>
+        <dd>
+          <span>{{ disponibilidadeExame.horaInicio | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Hora Fim</span></dt>
+        <dd>
+          <span>{{ disponibilidadeExame.horaFim | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Prestador</span></dt>
+        <dd>
+          <div *ngIf="disponibilidadeExame.prestador">
+            <a [routerLink]="['/prestador', disponibilidadeExame.prestador?.id, 'view']">{{ disponibilidadeExame.prestador?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Tipo Exame</span></dt>
+        <dd>
+          <div *ngIf="disponibilidadeExame.tipoExame">
+            <a [routerLink]="['/tipo-exame', disponibilidadeExame.tipoExame?.id, 'view']">{{ disponibilidadeExame.tipoExame?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/disponibilidade-exame', disponibilidadeExame.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

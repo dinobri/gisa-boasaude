@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20220406014704",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "exame",
+  "fields": [
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoAtendimento",
+      "fieldValues": "AGENDADO,CANCELADO,EM_ANDAMENTO,FINALIZADO"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Exame",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "disponibilidadeExame",
+      "otherEntityRelationshipName": "exame",
+      "ownerSide": true,
+      "relationshipName": "disponibilidadeExame",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "associado",
+      "otherEntityRelationshipName": "exame",
+      "relationshipName": "associado",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

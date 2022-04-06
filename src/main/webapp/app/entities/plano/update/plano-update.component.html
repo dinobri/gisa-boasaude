@@ -1,0 +1,109 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-plano-heading" data-cy="PlanoCreateUpdateHeading">Create or edit a Plano</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_codigoANS">Codigo ANS</label>
+          <input type="text" class="form-control" name="codigoANS" id="field_codigoANS" data-cy="codigoANS" formControlName="codigoANS" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_categoria">Categoria</label>
+          <select class="form-control" name="categoria" formControlName="categoria" id="field_categoria" data-cy="categoria">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let categoriaPlano of categoriaPlanoValues" [value]="categoriaPlano">categoriaPlano</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_tipo">Tipo</label>
+          <select class="form-control" name="tipo" formControlName="tipo" id="field_tipo" data-cy="tipo">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let tipoPlano of tipoPlanoValues" [value]="tipoPlano">tipoPlano</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_odonto">Odonto</label>
+          <input type="checkbox" class="form-check" name="odonto" id="field_odonto" data-cy="odonto" formControlName="odonto" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_idadeMin">Idade Min</label>
+          <input type="number" class="form-control" name="idadeMin" id="field_idadeMin" data-cy="idadeMin" formControlName="idadeMin" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_idadeMax">Idade Max</label>
+          <input type="number" class="form-control" name="idadeMax" id="field_idadeMax" data-cy="idadeMax" formControlName="idadeMax" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_quantidadeConsultasAno">Quantidade Consultas Ano</label>
+          <input
+            type="number"
+            class="form-control"
+            name="quantidadeConsultasAno"
+            id="field_quantidadeConsultasAno"
+            data-cy="quantidadeConsultasAno"
+            formControlName="quantidadeConsultasAno"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_quanatidadeExamesAno">Quanatidade Exames Ano</label>
+          <input
+            type="number"
+            class="form-control"
+            name="quanatidadeExamesAno"
+            id="field_quanatidadeExamesAno"
+            data-cy="quanatidadeExamesAno"
+            formControlName="quanatidadeExamesAno"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_valorMensalidade">Valor Mensalidade</label>
+          <input
+            type="number"
+            class="form-control"
+            name="valorMensalidade"
+            id="field_valorMensalidade"
+            data-cy="valorMensalidade"
+            formControlName="valorMensalidade"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

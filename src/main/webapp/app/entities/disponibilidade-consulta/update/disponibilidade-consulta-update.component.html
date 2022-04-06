@@ -1,0 +1,77 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-disponibilidade-consulta-heading" data-cy="DisponibilidadeConsultaCreateUpdateHeading">
+        Create or edit a Disponibilidade Consulta
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_horaInicio">Hora Inicio</label>
+          <div class="d-flex">
+            <input
+              id="field_horaInicio"
+              data-cy="horaInicio"
+              type="datetime-local"
+              class="form-control"
+              name="horaInicio"
+              formControlName="horaInicio"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_horaFim">Hora Fim</label>
+          <div class="d-flex">
+            <input
+              id="field_horaFim"
+              data-cy="horaFim"
+              type="datetime-local"
+              class="form-control"
+              name="horaFim"
+              formControlName="horaFim"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_prestador">Prestador</label>
+          <select class="form-control" id="field_prestador" data-cy="prestador" name="prestador" formControlName="prestador">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="prestadorOption.id === editForm.get('prestador')!.value?.id ? editForm.get('prestador')!.value : prestadorOption"
+              *ngFor="let prestadorOption of prestadorsSharedCollection; trackBy: trackPrestadorById"
+            >
+              {{ prestadorOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

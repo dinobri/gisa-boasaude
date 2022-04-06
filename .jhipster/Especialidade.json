@@ -1,0 +1,20 @@
+{
+  "applications": "*",
+  "changelogDate": "20220406014708",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "especialidade",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Especialidade",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

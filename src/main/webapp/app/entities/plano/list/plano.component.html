@@ -1,0 +1,86 @@
+<div>
+  <h2 id="page-heading" data-cy="PlanoHeading">
+    <span>Planos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-plano"
+        [routerLink]="['/plano/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Plano </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="planos?.length === 0">
+    <span>No planos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="planos && planos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Nome</span></th>
+          <th scope="col"><span>Codigo ANS</span></th>
+          <th scope="col"><span>Categoria</span></th>
+          <th scope="col"><span>Tipo</span></th>
+          <th scope="col"><span>Odonto</span></th>
+          <th scope="col"><span>Idade Min</span></th>
+          <th scope="col"><span>Idade Max</span></th>
+          <th scope="col"><span>Quantidade Consultas Ano</span></th>
+          <th scope="col"><span>Quanatidade Exames Ano</span></th>
+          <th scope="col"><span>Valor Mensalidade</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plano of planos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/plano', plano.id, 'view']">{{ plano.id }}</a>
+          </td>
+          <td>{{ plano.nome }}</td>
+          <td>{{ plano.codigoANS }}</td>
+          <td>{{ plano.categoria }}</td>
+          <td>{{ plano.tipo }}</td>
+          <td>{{ plano.odonto }}</td>
+          <td>{{ plano.idadeMin }}</td>
+          <td>{{ plano.idadeMax }}</td>
+          <td>{{ plano.quantidadeConsultasAno }}</td>
+          <td>{{ plano.quanatidadeExamesAno }}</td>
+          <td>{{ plano.valorMensalidade }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/plano', plano.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/plano', plano.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(plano)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

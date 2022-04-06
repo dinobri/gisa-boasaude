@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="ConsultaHeading">
+    <span>Consultas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-consulta"
+        [routerLink]="['/consulta/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Consulta </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="consultas?.length === 0">
+    <span>No consultas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="consultas && consultas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Situacao</span></th>
+          <th scope="col"><span>Disponibilidade Consulta</span></th>
+          <th scope="col"><span>Associado</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let consulta of consultas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/consulta', consulta.id, 'view']">{{ consulta.id }}</a>
+          </td>
+          <td>{{ consulta.situacao }}</td>
+          <td>
+            <div *ngIf="consulta.disponibilidadeConsulta">
+              <a [routerLink]="['/disponibilidade-consulta', consulta.disponibilidadeConsulta?.id, 'view']">{{
+                consulta.disponibilidadeConsulta?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="consulta.associado">
+              <a [routerLink]="['/associado', consulta.associado?.id, 'view']">{{ consulta.associado?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/consulta', consulta.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/consulta', consulta.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(consulta)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

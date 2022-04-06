@@ -48,6 +48,19 @@ public class CacheConfiguration {
             createCache(cm, br.com.boasaude.gisa.domain.User.class.getName());
             createCache(cm, br.com.boasaude.gisa.domain.Authority.class.getName());
             createCache(cm, br.com.boasaude.gisa.domain.User.class.getName() + ".authorities");
+            createCache(cm, br.com.boasaude.gisa.domain.Associado.class.getName());
+            createCache(cm, br.com.boasaude.gisa.domain.Prestador.class.getName());
+            createCache(cm, br.com.boasaude.gisa.domain.Conveniado.class.getName());
+            createCache(cm, br.com.boasaude.gisa.domain.Conveniado.class.getName() + ".tipoExames");
+            createCache(cm, br.com.boasaude.gisa.domain.Plano.class.getName());
+            createCache(cm, br.com.boasaude.gisa.domain.Consulta.class.getName());
+            createCache(cm, br.com.boasaude.gisa.domain.DisponibilidadeConsulta.class.getName());
+            createCache(cm, br.com.boasaude.gisa.domain.Exame.class.getName());
+            createCache(cm, br.com.boasaude.gisa.domain.DisponibilidadeExame.class.getName());
+            createCache(cm, br.com.boasaude.gisa.domain.TipoExame.class.getName());
+            createCache(cm, br.com.boasaude.gisa.domain.TipoExame.class.getName() + ".conveniados");
+            createCache(cm, br.com.boasaude.gisa.domain.Endereco.class.getName());
+            createCache(cm, br.com.boasaude.gisa.domain.Especialidade.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

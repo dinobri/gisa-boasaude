@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="disponibilidadeConsulta">
+      <h2 data-cy="disponibilidadeConsultaDetailsHeading"><span>Disponibilidade Consulta</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ disponibilidadeConsulta.id }}</span>
+        </dd>
+        <dt><span>Hora Inicio</span></dt>
+        <dd>
+          <span>{{ disponibilidadeConsulta.horaInicio | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Hora Fim</span></dt>
+        <dd>
+          <span>{{ disponibilidadeConsulta.horaFim | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Prestador</span></dt>
+        <dd>
+          <div *ngIf="disponibilidadeConsulta.prestador">
+            <a [routerLink]="['/prestador', disponibilidadeConsulta.prestador?.id, 'view']">{{ disponibilidadeConsulta.prestador?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/disponibilidade-consulta', disponibilidadeConsulta.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

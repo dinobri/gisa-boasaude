@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-exame-heading" data-cy="ExameCreateUpdateHeading">Create or edit a Exame</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_situacao">Situacao</label>
+          <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao" data-cy="situacao">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let situacaoAtendimento of situacaoAtendimentoValues" [value]="situacaoAtendimento">situacaoAtendimento</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_disponibilidadeExame">Disponibilidade Exame</label>
+          <select
+            class="form-control"
+            id="field_disponibilidadeExame"
+            data-cy="disponibilidadeExame"
+            name="disponibilidadeExame"
+            formControlName="disponibilidadeExame"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                disponibilidadeExameOption.id === editForm.get('disponibilidadeExame')!.value?.id
+                  ? editForm.get('disponibilidadeExame')!.value
+                  : disponibilidadeExameOption
+              "
+              *ngFor="let disponibilidadeExameOption of disponibilidadeExamesCollection; trackBy: trackDisponibilidadeExameById"
+            >
+              {{ disponibilidadeExameOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_associado">Associado</label>
+          <select class="form-control" id="field_associado" data-cy="associado" name="associado" formControlName="associado">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="associadoOption.id === editForm.get('associado')!.value?.id ? editForm.get('associado')!.value : associadoOption"
+              *ngFor="let associadoOption of associadosSharedCollection; trackBy: trackAssociadoById"
+            >
+              {{ associadoOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

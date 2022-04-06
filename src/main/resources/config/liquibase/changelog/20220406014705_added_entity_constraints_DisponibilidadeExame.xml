@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity DisponibilidadeExame.
+    -->
+    <changeSet id="20220406014705-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="prestador_id"
+                                 baseTableName="disponibilidade_exame"
+                                 constraintName="fk_disponibilidade_exame__prestador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prestador"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_exame_id"
+                                 baseTableName="disponibilidade_exame"
+                                 constraintName="fk_disponibilidade_exame__tipo_exame_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_exame"/>
+    </changeSet>
+</databaseChangeLog>

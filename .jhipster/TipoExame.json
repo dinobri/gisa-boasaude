@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20220406014706",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "tipo_exame",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TipoExame",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "conveniado",
+      "otherEntityRelationshipName": "tipoExame",
+      "ownerSide": false,
+      "relationshipName": "conveniado",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

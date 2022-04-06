@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="conveniado">
+      <h2 data-cy="conveniadoDetailsHeading"><span>Conveniado</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ conveniado.id }}</span>
+        </dd>
+        <dt><span>Nome</span></dt>
+        <dd>
+          <span>{{ conveniado.nome }}</span>
+        </dd>
+        <dt><span>Telefone</span></dt>
+        <dd>
+          <span>{{ conveniado.telefone }}</span>
+        </dd>
+        <dt><span>Endereco</span></dt>
+        <dd>
+          <div *ngIf="conveniado.endereco">
+            <a [routerLink]="['/endereco', conveniado.endereco?.id, 'view']">{{ conveniado.endereco?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Tipo Exame</span></dt>
+        <dd>
+          <span *ngFor="let tipoExame of conveniado.tipoExames; let last = last">
+            <a [routerLink]="['/tipo-exame', tipoExame?.id, 'view']">{{ tipoExame.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/conveniado', conveniado.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

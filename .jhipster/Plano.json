@@ -1,0 +1,58 @@
+{
+  "applications": "*",
+  "changelogDate": "20220406014701",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "plano",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codigoANS",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "categoria",
+      "fieldType": "CategoriaPlano",
+      "fieldValues": "INDIVIDUAL,EMPRESARIAL"
+    },
+    {
+      "fieldName": "tipo",
+      "fieldType": "TipoPlano",
+      "fieldValues": "ENFERMARIA,APARTAMENTO,VIP"
+    },
+    {
+      "fieldName": "odonto",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "idadeMin",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "idadeMax",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "quantidadeConsultasAno",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "quanatidadeExamesAno",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "valorMensalidade",
+      "fieldType": "Double"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Plano",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

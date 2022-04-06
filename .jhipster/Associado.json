@@ -1,0 +1,99 @@
+{
+  "applications": "*",
+  "changelogDate": "20220406014658",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "associado",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sobrenome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "estadoCivil",
+      "fieldType": "EstadoCivil",
+      "fieldValues": "SOLTEIRO,CASADO,DIVORCIADO,VIUVO,UNIAO_ESTAVEL"
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "Sexo",
+      "fieldValues": "MASCULINO,FEMININO"
+    },
+    {
+      "fieldName": "naturalidadeUf",
+      "fieldType": "UF",
+      "fieldValues": "AC,AL,AP,AM,BA,CE,ES,GO,MA,MT,MS,MG,PA,PB,PR,PE,PI,RJ,RN,RS,RO,RR,SC,SP,SE,TO,DF"
+    },
+    {
+      "fieldName": "naturalidadeCidade",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numeroDocumento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ufDocumento",
+      "fieldType": "UF",
+      "fieldValues": "AC,AL,AP,AM,BA,CE,ES,GO,MA,MT,MS,MG,PA,PB,PR,PE,PI,RJ,RN,RS,RO,RR,SC,SP,SE,TO,DF"
+    },
+    {
+      "fieldName": "orgaoDocumento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataDocumento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "nomeMae",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomePai",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sitaucao",
+      "fieldType": "SituacaoAssociado",
+      "fieldValues": "ATIVO,SUSPENSO,INATIVO"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Associado",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "endereco",
+      "otherEntityRelationshipName": "associado",
+      "ownerSide": true,
+      "relationshipName": "endereco",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "plano",
+      "otherEntityRelationshipName": "associado",
+      "relationshipName": "plano",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

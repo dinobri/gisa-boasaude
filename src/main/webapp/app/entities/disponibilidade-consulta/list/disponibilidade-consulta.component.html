@@ -1,0 +1,88 @@
+<div>
+  <h2 id="page-heading" data-cy="DisponibilidadeConsultaHeading">
+    <span>Disponibilidade Consultas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-disponibilidade-consulta"
+        [routerLink]="['/disponibilidade-consulta/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Disponibilidade Consulta </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="disponibilidadeConsultas?.length === 0">
+    <span>No disponibilidadeConsultas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="disponibilidadeConsultas && disponibilidadeConsultas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Hora Inicio</span></th>
+          <th scope="col"><span>Hora Fim</span></th>
+          <th scope="col"><span>Prestador</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let disponibilidadeConsulta of disponibilidadeConsultas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/disponibilidade-consulta', disponibilidadeConsulta.id, 'view']">{{ disponibilidadeConsulta.id }}</a>
+          </td>
+          <td>{{ disponibilidadeConsulta.horaInicio | formatMediumDatetime }}</td>
+          <td>{{ disponibilidadeConsulta.horaFim | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="disponibilidadeConsulta.prestador">
+              <a [routerLink]="['/prestador', disponibilidadeConsulta.prestador?.id, 'view']">{{
+                disponibilidadeConsulta.prestador?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/disponibilidade-consulta', disponibilidadeConsulta.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/disponibilidade-consulta', disponibilidadeConsulta.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(disponibilidadeConsulta)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

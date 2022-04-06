@@ -1,0 +1,55 @@
+{
+  "applications": "*",
+  "changelogDate": "20220406014659",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "prestador",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sobrenome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "Sexo",
+      "fieldValues": "MASCULINO,FEMININO"
+    },
+    {
+      "fieldName": "numeroRegistroProfissional",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Prestador",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "endereco",
+      "otherEntityRelationshipName": "prestador",
+      "ownerSide": true,
+      "relationshipName": "enderecoAtendimento",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "especialidade",
+      "otherEntityRelationshipName": "prestador",
+      "relationshipName": "especialidade",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="DisponibilidadeExameHeading">
+    <span>Disponibilidade Exames</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-disponibilidade-exame"
+        [routerLink]="['/disponibilidade-exame/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Disponibilidade Exame </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="disponibilidadeExames?.length === 0">
+    <span>No disponibilidadeExames found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="disponibilidadeExames && disponibilidadeExames.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Hora Inicio</span></th>
+          <th scope="col"><span>Hora Fim</span></th>
+          <th scope="col"><span>Prestador</span></th>
+          <th scope="col"><span>Tipo Exame</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let disponibilidadeExame of disponibilidadeExames; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/disponibilidade-exame', disponibilidadeExame.id, 'view']">{{ disponibilidadeExame.id }}</a>
+          </td>
+          <td>{{ disponibilidadeExame.horaInicio | formatMediumDatetime }}</td>
+          <td>{{ disponibilidadeExame.horaFim | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="disponibilidadeExame.prestador">
+              <a [routerLink]="['/prestador', disponibilidadeExame.prestador?.id, 'view']">{{ disponibilidadeExame.prestador?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="disponibilidadeExame.tipoExame">
+              <a [routerLink]="['/tipo-exame', disponibilidadeExame.tipoExame?.id, 'view']">{{ disponibilidadeExame.tipoExame?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/disponibilidade-exame', disponibilidadeExame.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/disponibilidade-exame', disponibilidadeExame.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(disponibilidadeExame)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

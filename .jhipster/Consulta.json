@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20220406014702",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "consulta",
+  "fields": [
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoAtendimento",
+      "fieldValues": "AGENDADO,CANCELADO,EM_ANDAMENTO,FINALIZADO"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Consulta",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "disponibilidadeConsulta",
+      "otherEntityRelationshipName": "consulta",
+      "ownerSide": true,
+      "relationshipName": "disponibilidadeConsulta",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "associado",
+      "otherEntityRelationshipName": "consulta",
+      "relationshipName": "associado",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

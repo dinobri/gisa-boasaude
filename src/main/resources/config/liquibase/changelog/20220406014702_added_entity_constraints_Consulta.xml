@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Consulta.
+    -->
+    <changeSet id="20220406014702-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="disponibilidade_consulta_id"
+                                 baseTableName="consulta"
+                                 constraintName="fk_consulta__disponibilidade_consulta_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="disponibilidade_consulta"/>
+
+        <addForeignKeyConstraint baseColumnNames="associado_id"
+                                 baseTableName="consulta"
+                                 constraintName="fk_consulta__associado_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="associado"/>
+    </changeSet>
+</databaseChangeLog>

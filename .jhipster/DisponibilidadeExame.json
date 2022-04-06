@@ -1,0 +1,37 @@
+{
+  "applications": "*",
+  "changelogDate": "20220406014705",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "disponibilidade_exame",
+  "fields": [
+    {
+      "fieldName": "horaInicio",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "horaFim",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DisponibilidadeExame",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "prestador",
+      "otherEntityRelationshipName": "disponibilidadeExame",
+      "relationshipName": "prestador",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "tipoExame",
+      "otherEntityRelationshipName": "disponibilidadeExame",
+      "relationshipName": "tipoExame",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}
